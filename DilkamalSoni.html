@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dilkamal Soni — Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #1a1a1f;
+    --bg2:       #212128;
+    --bg3:       #28282f;
+    --border:    rgba(255,255,255,0.09);
+    --border2:   rgba(255,255,255,0.16);
+    --text:      #eeeef2;
+    --muted:     #8e8ea0;
+    --accent:    #3b82f6;
+    --accent2:   #60a5fa;
+    --accent-dim:rgba(59,130,246,0.12);
+    --mono:      'DM Mono', monospace;
+    --display:   'Syne', sans-serif;
+    --body:      'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(26,26,31,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    max-width: 900px;
+    margin-bottom: 32px;
+  }
+
+  h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(232,232,236,0.3);
+  }
+
+  .hero-desc {
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 1200px;
+    line-height: 1.85;
+    margin-bottom: 48px;
+  }
+
+  .hero-desc strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
+
+  .hero-stats {
+    position: absolute;
+    right: 48px;
+    top: 20%;
+    transform: translateY(-50%);
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-panel-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stat-panel-label::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .stat-row {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+  }
+
+  .stat-row:hover { border-color: var(--border2); }
+
+  .stat-row-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stat-row-value {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .stat-row-value.accent { color: var(--accent2); }
+
+  .stat-divider {
+    height: 8px;
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    padding: 100px 48px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    max-width: 640px;
+  }
+
+  /* ── ABOUT ── */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    max-width: 1100px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .skills-block {
+    margin-bottom: 40px;
+  }
+
+  .skills-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    letter-spacing: 0.04em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .tag:hover { color: var(--accent2); border-color: var(--accent); }
+
+  /* ── PROJECTS ── */
+  #projects .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .project-card:hover { border-color: var(--border2); background: var(--bg3); }
+  .project-card:hover::before { background: var(--accent); }
+
+  .project-card.featured {
+    border-color: rgba(59,130,246,0.25);
+    background: rgba(59,130,246,0.04);
+  }
+
+  .project-card.featured::before { background: var(--accent); }
+
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .project-index {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--muted);
+  }
+
+  .status-dot.active {
+    background: #22c55e;
+    box-shadow: 0 0 6px #22c55e;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .project-content h3 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .project-org {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  .project-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .project-desc strong { color: var(--text); font-weight: 400; }
+
+  .project-results {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-results li {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .project-results li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience .exp-grid {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+  }
+
+  .exp-sidebar {
+    position: sticky;
+    top: 84px;
+    align-self: start;
+  }
+
+  .exp-sidebar p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .exp-sidebar p strong { color: var(--text); font-weight: 400; }
+
+  .exp-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:first-child { padding-top: 0; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 16px;
+  }
+
+  .exp-title {
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  .exp-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-points li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .exp-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border2);
+  }
+
+  #projects, #references, #education {
+    text-align: left;
+  }
+
+  #projects .section-label,
+  #references .section-label,
+  #education .section-label {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #projects h2,
+  #references h2,
+  #education h2 {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+  }
+  #references .ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .ref-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 32px;
+    transition: border-color 0.3s;
+  }
+
+  .ref-card:hover { border-color: var(--border2); }
+
+  .ref-quote {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .ref-quote::before {
+    content: '"';
+    font-family: var(--display);
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 0;
+    vertical-align: -16px;
+    margin-right: 4px;
+    opacity: 0.5;
+  }
+  
+  .ref-quote::after {
+	content: '"';
+    font-family: var(--display);
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 0;
+    vertical-align: -16px;
+    margin-right: 1px;
+    opacity: 0.5;
+  }
+
+  .ref-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ref-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .ref-role {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    text-align: center;
+    padding: 120px 48px;
+  }
+
+  #contact h2 {
+    margin: 0 auto 16px;
+  }
+
+  #contact p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  * { cursor: none !important; }
+
+  #cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── HERO ANIMATION ── */
+  .hero-tag, h1, .hero-desc, .hero-cta, .hero-stats {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  h1 { animation-delay: 0.1s; }
+  .hero-desc { animation-delay: 0.2s; }
+  .hero-cta { animation-delay: 0.3s; }
+  .hero-stats { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    #hero, section, footer { padding-left: 24px; padding-right: 24px; }
+    #hero { padding-top: 100px; }
+    h1 { font-size: 40px; }
+    #about .about-grid,
+    #experience .exp-grid,
+    #references .ref-grid { grid-template-columns: 1fr; gap: 40px; }
+    .project-card { grid-template-columns: 1fr; gap: 24px; }
+    .hero-stats {
+      position: static;
+      transform: none;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .exp-sidebar { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">DS.eng</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#references">References</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-line" style="left: 48px;"></div>
+  <div class="hero-grid-line" style="right: 48px;"></div>
+
+  <div class="hero-tag">Mechanical Engineer — Melbourne, AU</div>
+
+  <h1>Dilkamal<br><span>Soni</span></h1>
+
+  <p class="hero-desc">
+    Mechanical engineer with a background in <strong>precision design, technical delivery</strong> 
+	and <strong>hands-on fabrication</strong>, across complex engineering programmes.
+    Three years of industry experience. Now based in Melbourne, open to design and systems engineering roles.
+	Actively building on that foundation with projects in <strong>motor systems, additive manufacturing, 
+	design for manufacture skills. </strong>
+    
+  </p>
+
+  <div class="hero-cta">
+    <a href="#projects" class="btn-primary">View Projects ↓</a>
+    <a href="https://linkedin.com/in/dilkamal-soni" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-panel-label">Profile</div>
+    <div class="stat-row">
+      <span class="stat-row-label">Degree</span>
+      <span class="stat-row-value">BEng (Hons)</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-row-label">Major</span>
+      <span class="stat-row-value accent">Mechanical</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-row-label">Minor</span>
+      <span class="stat-row-value accent">Aeronautical </span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-row-label">Projects</span>
+      <span class="stat-row-value">200+</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-row-label">Contracts</span>
+      <span class="stat-row-value">$5M+</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-row-label">Ind. Exp.</span>
+      <span class="stat-row-value accent">3 years</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-row-label">Location</span>
+      <span class="stat-row-value">Melbourne, AU</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-row-label">Status</span>
+      <span class="stat-row-value accent" style="display:flex;align-items:center;gap:6px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0;"></span>
+        Available
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2>Engineer with range.<br>Focus on what's next.</h2>
+
+  <div class="about-grid">
+    <div class="about-text reveal">
+	  <p>
+		I am a mechanical engineer with a background in <strong>technical project delivery,
+		precision fabrication, and design coordination</strong> across complex, multi-site
+		engineering programmes. I have worked across Canada on projects ranging from
+		$1.3M to over $10B in total construction value.
+	  </p>
+	  <p>
+		My engineering foundations were built at HKUST — including hands-on work in
+		<strong>robotics system design, FEA-validated structural analysis, and
+		micron-level precision fabrication</strong> for medical-grade sensor development.
+		I bring both the technical depth and the project discipline to operate confidently
+		across design and delivery roles.
+	  </p>
+	  <p>
+		Outside of professional work, I actively pursue self-directed engineering projects
+		to develop skills in <strong>motor systems, additive manufacturing, and
+		design for manufacture</strong> — areas I find technically compelling and
+		increasingly relevant across industries.
+	  </p>
+	  <p>
+		I am seeking roles where I can apply strong mechanical engineering fundamentals
+		to <strong>well-engineered products and systems</strong>.
+	  </p>
+    </div>
+
+    <div class="about-sidebar reveal reveal-delay-1">
+      <div class="skills-block">
+        <div class="skills-label">Design & Analysis</div>
+        <div class="skill-tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">FEA</span>
+          <span class="tag">Fusion 360</span>
+          <span class="tag">FEMM</span>
+          <span class="tag">AutoCAD</span>
+          <span class="tag">Autodesk Inventor</span>
+          <span class="tag">CATIA V5</span>
+        </div>
+      </div>
+      <div class="skills-block">
+        <div class="skills-label">Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">Motor systems</span>
+          <span class="tag">DFM / DFA</span>
+          <span class="tag">Additive manufacturing</span>
+          <span class="tag">Structural analysis</span>
+          <span class="tag">Instrumentation</span>
+          <span class="tag">Root cause analysis</span>
+          <span class="tag">Cost estimation</span>
+        </div>
+      </div>
+      <div class="skills-block">
+        <div class="skills-label">Tools & Methods</div>
+        <div class="skill-tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Python</span>
+          <span class="tag">Project engineering</span>
+          <span class="tag">Technical reporting</span>
+          <span class="tag">Workflow automation</span>
+          <span class="tag">Vendor coordination</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>Built things.<br>Measured results.</h2>
+
+  <div class="projects-list">
+
+    <!-- Project 1 — BLDC (Coming Soon) -->
+    <div class="project-card featured reveal">
+      <div class="project-meta">
+        <div class="project-index">01</div>
+        <div class="project-status">
+          <span class="status-dot active"></span>
+          In progress — 2026
+        </div>
+        <div class="project-tags">
+          <span class="tag">BLDC motors</span>
+          <span class="tag">Efficiency mapping</span>
+          <span class="tag">Additive mfg</span>
+          <span class="tag">DFX</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>BLDC Motor Efficiency Testbench</h3>
+        <div class="project-org">Self-directed — Electric Propulsion Research</div>
+        <p class="project-desc" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(59,130,246,0.3);padding:6px 14px;background:rgba(59,130,246,0.06);">Coming Soon</span>
+          <span>Currently in progress. Full results, efficiency plots, CAD, and technical report will be published here upon completion.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Project 2 — Wall Painting Robot -->
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-meta">
+        <div class="project-index">02</div>
+        <div class="project-status">
+          <span class="status-dot"></span>
+          Completed — 2021
+        </div>
+        <div class="project-tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">FEA</span>
+          <span class="tag">Fabrication</span>
+          <span class="tag">Systems design</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Autonomous Wall Painting Robot</h3>
+        <div class="project-org">MTR Corporation — Hong Kong University of Science and Technology</div>
+        <p class="project-desc">
+          Designed, analysed, and fabricated the spraying and actuation mechanisms for a
+          <strong>10-metre autonomous wall painting robot</strong> for an industrial renovation application.
+          Full system designed in SolidWorks with structural validation via FEA and Root Cause Failure
+          Analysis. Manufactured by coordinating with Chinese and local suppliers during peak COVID-19
+          restrictions — <strong>four months with no lab access, no deliveries, and no direct supervision</strong>.
+          Demonstrated a working prototype achieving <strong>200% efficiency</strong> over manual methods.
+        </p>
+        <ul class="project-results">
+          <li>Reduced scaffolding costs by 41.4% through robot-based access solution</li>
+          <li>20% improvement in operational efficiency through design refinements</li>
+          <li>50% of total project work completed independently and unsupervised</li>
+          <li>Awarded A− grade; recognised for resourcefulness and perseverance under COVID conditions</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 3 — Smart Contact Lens -->
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-meta">
+        <div class="project-index">03</div>
+        <div class="project-status">
+          <span class="status-dot"></span>
+          Completed — 2022
+        </div>
+        <div class="project-tags">
+          <span class="tag">Photolithography</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">Precision fabrication</span>
+          <span class="tag">Signal integrity</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Smart Contact Lens Pressure Sensors</h3>
+        <div class="project-org">Hong Kong University of Science and Technology</div>
+        <p class="project-desc">
+          Fabricated and tested <strong>wireless intraocular pressure (IOP) sensors</strong>
+          embedded in contact lenses for early diagnosis of ocular disease. Sensors produced via
+          photolithography, mould casting, and chemical etching. Signal integrity verified using a
+          <strong>Vector Network Analyser (VNA)</strong>; data captured and processed in MATLAB.
+          The precision fabrication process required maintaining micron-level tolerances across
+          a high-volume batch — directly analogous to the tight manufacturing tolerances required
+          in electric motor winding and lamination assembly.
+        </p>
+        <ul class="project-results">
+          <li>92 samples fabricated and validated for in-vivo hospital testing</li>
+          <li>40% improvement in fabrication efficiency through process optimisation</li>
+          <li>VNA signal integrity validation across full sample batch</li>
+          <li>Samples submitted to hospital authorities for clinical evaluation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 4 — GUNN Consultants -->
+    <div class="project-card reveal reveal-delay-3">
+      <div class="project-meta">
+        <div class="project-index">04</div>
+        <div class="project-status">
+          <span class="status-dot"></span>
+          Professional — 2023–2025
+        </div>
+        <div class="project-tags">
+          <span class="tag">Project engineering</span>
+          <span class="tag">Technical specs</span>
+          <span class="tag">DFM</span>
+          <span class="tag">Workflow automation</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Multi-Site Infrastructure Engineering</h3>
+        <div class="project-org">GUNN Consultants ULC — Vancouver / Calgary / Toronto</div>
+        <p class="project-desc">
+          Delivered technical engineering coordination across <strong>200+ projects</strong> spanning
+          new construction and modernisation works across Canada. Responsibilities included design
+          specification authoring, contractor management, design reviews, cost estimation, and
+          authority submissions. Operated as prime consultant across multiple concurrent sites,
+          coordinating between architects, structural engineers, and OEM contractors under live
+          construction conditions.
+        </p>
+        <ul class="project-results">
+          <li>$5M+ in contracts managed across Vancouver, Calgary, and Toronto</li>
+          <li>Coordinated vertical transportation scope on a project with $10B+ total construction value</li>
+          <li>18% reduction in contract approval lead time through process redesign</li>
+          <li>177% increase in invoice value over three consecutive quarters</li>
+          <li>16% faster documentation turnaround via workflow automation</li>
+          <li>15+ process improvement initiatives delivered across multidisciplinary teams</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Professional<br>background.</h2>
+
+  <div class="exp-grid">
+    <div class="exp-sidebar reveal">
+      <p>
+        Two years coordinating <strong>vertical transportation engineering</strong> on some of Canada's
+        most complex infrastructure projects. Developed core skills in
+        <strong>technical specification writing, multidisciplinary coordination,
+        contractor management, and delivering engineered systems under real budget and schedule pressure.</strong>
+      </p>
+      <br>
+      <p style="margin-top: 12px;">
+        Project values ranged from $1.3M to over $10B total construction value.
+        These are the project management and technical delivery fundamentals that
+        transfer directly into any engineering environment.
+      </p>
+    </div>
+
+    <div class="exp-items">
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-header">
+          <div class="exp-title">Project Engineer</div>
+          <div class="exp-date">Jul 2023 – Aug 2025</div>
+        </div>
+        <div class="exp-company">GUNN Consultants ULC — Vancouver / Calgary / Toronto</div>
+        <ul class="exp-points">
+          <li>Managed execution of 200+ high-value projects across Toronto, Calgary, and Vancouver, overseeing contracts worth $5M+</li>
+          <li>Led 15+ process improvement initiatives across multidisciplinary teams, cutting contract approval lead time by 18% and boosting invoice value by 177% over three quarters</li>
+          <li>Automated project documentation, reducing turnaround time by 16% and improving overall delivery efficiency</li>
+          <li>Coordinated with 4 OEM contractors under NDA on the Metrolinx/TTC railway extension — 20+ elevators and 20+ escalators across 4 stations</li>
+          <li>Managed design deliverables for luxury high-rise development with 30+ elevators and 4 escalators across twin towers (~$1B total project value)</li>
+          <li>Led design reviews, manufacturability analysis, cost estimation, and technical specifications ensuring timely project delivery</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-2">
+        <div class="exp-header">
+          <div class="exp-title">Lab Research Assistant</div>
+          <div class="exp-date">Jun – Sept 2020</div>
+        </div>
+        <div class="exp-company">Hong Kong University of Science and Technology</div>
+        <ul class="exp-points">
+          <li>Led fabrication of non-invasive contact lens sensors for early glaucoma detection using photolithography and chemical etching</li>
+          <li>Increased production efficiency by 40% through data-driven process refinements</li>
+          <li>92 samples fabricated and submitted to hospital authorities for in-vivo clinical evaluation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2>Academic<br>foundation.</h2>
+
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="exp-item reveal" style="border-bottom: none; padding-bottom: 0;">
+      <div class="exp-header">
+        <div class="exp-title">Bachelor of Engineering (Honours)</div>
+        <div class="exp-date">Graduated 2022</div>
+      </div>
+      <div class="exp-company">Hong Kong University of Science and Technology — Washington Accord</div>
+      <ul class="exp-points" style="margin-top: 8px;">
+        <li>Major: Mechanical Engineering</li>
+        <li>Minor: Aeronautical Engineering</li>
+        <li>Capstone project in partnership with MTR Corporation — autonomous robotics system design and fabrication</li>
+        <li>Research placement in precision MEMS sensor fabrication for medical applications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references">
+  <div class="section-label">References</div>
+  <h2>What colleagues<br>have said.</h2>
+
+  <div class="ref-grid">
+    <div class="ref-card reveal">
+      <p class="ref-quote">
+        Dilkamal possesses a remarkable talent for tackling complex challenges with creativity
+        and precision. He approaches each task with a methodical and analytical mindset, and
+        has been quick to grasp new concepts. His ability to think critically and adapt to new
+        situations has been invaluable — he consistently goes above and beyond to deliver results.
+      </p>
+      <div class="ref-author">
+        <span class="ref-name">Anant Bakshi</span>
+        <span class="ref-role">Branch Manager — GUNN Consultants</span>
+      </div>
+    </div>
+
+    <div class="ref-card reveal reveal-delay-1">
+      <p class="ref-quote">
+        Collaborating with Dilkamal at GUNN has been a fantastic experience. His outstanding
+        problem-solving abilities and creative thinking have driven our team's achievements.
+        Dilkamal consistently exceeds expectations and is an invaluable team member. I highly
+        recommend him for any complex and demanding projects.
+      </p>
+      <div class="ref-author">
+        <span class="ref-name">Kyle Yiu</span>
+        <span class="ref-role">Project Engineer — GUNN Consultants</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content: center;">Contact</div>
+  <h2>Let's connect.</h2>
+  <p>
+    Open to mechanical design engineering roles and electric propulsion projects
+    in Melbourne. Always happy to talk motors, systems, or interesting engineering problems.
+  </p>
+  <div class="contact-links">
+    <a href="https://linkedin.com/in/dilkamal-soni" target="_blank" class="btn-primary">LinkedIn ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Dilkamal Soni — Melbourne, AU</p>
+  <p>Built with HTML & CSS — hosted on GitHub Pages</p>
+</footer>
+
+<!-- CUSTOM COORDINATE CURSOR -->
+<!-- CUSTOM COORDINATE CURSOR -->
+<div id="cursor">
+  <svg width="120" height="120" viewBox="-60 -60 120 120" style="overflow:visible; display:block;">
+    <!-- Outer rotating ring — slow scan -->
+    <circle id="ring-outer" cx="0" cy="0" r="18" fill="none" stroke="#7bc4ff" stroke-width="0.8" stroke-dasharray="9.43 4.71" opacity="0.5"/>
+    <!-- Inner ring -->
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#a0d4ff" stroke-width="0.8" opacity="0.35"/>
+    <!-- Crosshair arms -->
+    <line x1="-30" y1="0" x2="-8" y2="0" stroke="#7bc4ff" stroke-width="1.2" opacity="0.5"/>
+    <line x1="8"  y1="0" x2="30"  y2="0" stroke="#7bc4ff" stroke-width="1.2" opacity="0.5"/>
+    <line x1="0" y1="-30" x2="0" y2="-8" stroke="#7bc4ff" stroke-width="1.2" opacity="0.5"/>
+    <line x1="0" y1="8"  x2="0"  y2="30" stroke="#7bc4ff" stroke-width="1.2" opacity="0.5"/>
+    <!-- Corner brackets --
+    <polyline points="-52,-28 -52,-52 -28,-52" fill="none" stroke="#a0d4ff" stroke-width="1.4" opacity="1"/>
+    <polyline points="28,-52 52,-52 52,-28"     fill="none" stroke="#a0d4ff" stroke-width="1.4" opacity="1"/>
+    <polyline points="52,28 52,52 28,52"         fill="none" stroke="#a0d4ff" stroke-width="1.4" opacity="1"/>
+    <polyline points="-28,52 -52,52 -52,28"     fill="none" stroke="#a0d4ff" stroke-width="1.4" opacity="1"/>
+    <!-- Centre dot with glow -->
+    <circle cx="0" cy="0" r="3.5" fill="none" stroke="#7bc4ff" stroke-width="1" opacity="0.5"/>
+    <circle cx="0" cy="0" r="1.8" fill="#ffffff" opacity="1"/>
+    <!-- X coord — bottom arm -->
+    <text id="label-x" x="6" y="42"
+      font-family="'DM Mono', monospace" font-size="8.5" fill="#7bc4ff" opacity="1" letter-spacing="0.3">x:0</text>
+    <!-- Y coord — right arm -->
+    <text id="label-y" x="22" y="-5"
+      font-family="'DM Mono', monospace" font-size="8.5" fill="#7bc4ff" opacity="1" letter-spacing="0.3">y:0</text>
+  </svg>
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    if (reveals.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    }
+
+    // ── Cursor ──
+    const cursor = document.getElementById('cursor');
+    const labelX = document.getElementById('label-x');
+    const labelY = document.getElementById('label-y');
+    const ring   = document.getElementById('ring-outer');
+    if (!cursor || !labelX || !labelY) return;
+
+    // Rotate the outer ring continuously
+    let angle = 0;
+    (function spinRing() {
+      angle += 0.4;
+      ring.setAttribute('transform', 'rotate(' + angle + ')');
+      requestAnimationFrame(spinRing);
+    })();
+
+    document.addEventListener('mousemove', function(e) {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+      labelX.textContent = 'x:' + e.clientX;
+      labelY.textContent = 'y:' + e.clientY;
+    });
+
+    document.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; });
+    document.addEventListener('mouseenter', function() { cursor.style.opacity = '1'; });
+
+  });
+</script>
+
+</body>
+</html>
