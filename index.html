@@ -489,7 +489,92 @@
     flex-shrink: 0;
     margin-top: 1px;
   }
-
+	/* ── GALLERY THUMBNAILS ── */
+	.project-gallery {
+	  display: flex;
+	  gap: 8px;
+	  flex-wrap: wrap;
+	  margin-top: 20px;
+	}
+	
+	.thumb {
+	  width: 80px;
+	  height: 60px;
+	  object-fit: cover;
+	  border: 1px solid var(--border);
+	  cursor: pointer !important;
+	  opacity: 0.75;
+	  transition: opacity 0.2s, border-color 0.2s;
+	}
+	
+	.thumb:hover {
+	  opacity: 1;
+	  border-color: var(--accent);
+	}
+	
+	/* ── LIGHTBOX OVERLAY ── */
+	#lightbox {
+	  display: none;
+	  position: fixed;
+	  top: 0; left: 0;
+	  width: 100%; height: 100%;
+	  background: rgba(0,0,0,0.92);
+	  z-index: 10000;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  gap: 16px;
+	}
+	
+	#lightbox.open {
+	  display: flex;
+	}
+	
+	#lightbox-img {
+	  max-width: 88vw;
+	  max-height: 78vh;
+	  object-fit: contain;
+	  border: 1px solid var(--border2);
+	  transition: transform 0.2s;
+	  cursor: zoom-in !important;
+	}
+	
+	#lightbox-img.zoomed {
+	  transform: scale(1.8);
+	  cursor: zoom-out !important;
+	}
+	
+	#lightbox-controls {
+	  display: flex;
+	  gap: 16px;
+	  align-items: center;
+	}
+	
+	.lb-btn {
+	  font-family: var(--mono);
+	  font-size: 12px;
+	  color: var(--muted);
+	  background: var(--bg2);
+	  border: 1px solid var(--border);
+	  padding: 8px 20px;
+	  cursor: pointer !important;
+	  letter-spacing: 0.08em;
+	  transition: color 0.2s, border-color 0.2s;
+	}
+	
+	.lb-btn:hover {
+	  color: var(--text);
+	  border-color: var(--accent);
+	}
+	
+	#lightbox-counter {
+	  font-family: var(--mono);
+	  font-size: 11px;
+	  color: var(--muted);
+	  letter-spacing: 0.1em;
+	  min-width: 60px;
+	  text-align: center;
+	} 	
   /* ── EXPERIENCE ── */
   #experience .exp-grid {
     max-width: 1100px;
@@ -987,6 +1072,16 @@
           <li>50% of total project work completed independently and unsupervised</li>
           <li>Awarded A− grade; recognised for resourcefulness and perseverance under COVID conditions</li>
         </ul>
+		<div class="project-gallery">
+			<img src="images/robo-1.png" class"thumb" alt="wall painting location">
+			<img src="images/robo-2.png" class"thumb" alt="painting research">
+			<img src="images/robo-3.png" class"thumb" alt="inital design">
+			<img src="images/robo-4.png" class"thumb" alt="FEA analysis">
+			<img src="images/robo-5.png" class"thumb" alt="Lifting system CAD design">
+			<img src="images/robo-6.png" class"thumb" alt="Final CAD design">
+			<img src="images/robo-7.png" class"thumb" alt="Final Product">
+			<img src="images/robo-8.png" class"thumb" alt="Final Product">
+		</div>
       </div>
     </div>
 
@@ -1023,6 +1118,14 @@
           <li>VNA signal integrity validation across full sample batch</li>
           <li>Samples submitted to hospital authorities for clinical evaluation</li>
         </ul>
+		  <div class="project-gallery">
+			<img src="images/lens-1.png" class"thumb" alt="Intraocular Pressure Testing">
+			<img src="images/lens-2.png" class"thumb" alt="Sample Lens Sensors">
+			<img src="images/lens-3.png" class"thumb" alt="Photolithography Machine">
+			<img src="images/lens-4.png" class"thumb" alt="Male:Female Molds for Lens Fabrication">
+			<img src="images/lens-5.png" class"thumb" alt="MATLAB Data Collection and Experimentation">
+			<img src="images/lens-6.png" class"thumb" alt="VNA used to ensure signal integrity">
+		</div>
       </div>
     </div>
 
@@ -1060,6 +1163,13 @@
           <li>16% faster documentation turnaround via workflow automation</li>
           <li>15+ process improvement initiatives delivered across multidisciplinary teams</li>
         </ul>
+		   <div class="project-gallery">
+			<img src="images/gunn-1.png" class"thumb" alt="Sample Report Writing">
+			<img src="images/gunn-2.png" class"thumb" alt="Description Tables for Stakeholders">
+			<img src="images/gunn-3.png" class"thumb" alt="Specification Details for Contractors">
+			<img src="images/gunn-4.png" class"thumb" alt="Further Details">
+			<img src="images/gunn-5.png" class"thumb" alt="Design and Calculations using excel">
+		</div>
       </div>
     </div>
 
@@ -1194,8 +1304,18 @@
   <p>Dilkamal Soni — Melbourne, AU</p>
   <p>Built with HTML & CSS — hosted on GitHub Pages</p>
 </footer>
+	
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-controls">
+    <button class="lb-btn" id="lb-prev">← prev</button>
+    <span id="lightbox-counter">1 / 6</span>
+    <button class="lb-btn" id="lb-next">next →</button>
+    <button class="lb-btn" id="lb-close">close ✕</button>
+  </div>
+</div>
 
-<!-- CUSTOM COORDINATE CURSOR -->
 <!-- CUSTOM COORDINATE CURSOR -->
 <div id="cursor">
   <svg width="120" height="120" viewBox="-60 -60 120 120" style="overflow:visible; display:block;">
@@ -1241,7 +1361,76 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       reveals.forEach(el => observer.observe(el));
     }
-
+		// ── Lightbox ──
+		const lightbox    = document.getElementById('lightbox');
+		const lbImg       = document.getElementById('lightbox-img');
+		const lbCounter   = document.getElementById('lightbox-counter');
+		const lbPrev      = document.getElementById('lb-prev');
+		const lbNext      = document.getElementById('lb-next');
+		const lbClose     = document.getElementById('lb-close');
+		
+		let currentSet   = [];
+		let currentIndex = 0;
+		
+		function openLightbox(images, index) {
+		  currentSet   = images;
+		  currentIndex = index;
+		  showImage();
+		  lightbox.classList.add('open');
+		}
+		
+		function showImage() {
+		  lbImg.src = currentSet[currentIndex];
+		  lbImg.classList.remove('zoomed');
+		  lbCounter.textContent = (currentIndex + 1) + ' / ' + currentSet.length;
+		}
+		
+		function closeLightbox() {
+		  lightbox.classList.remove('open');
+		  lbImg.classList.remove('zoomed');
+		}
+		
+		lbPrev.addEventListener('click', function() {
+		  currentIndex = (currentIndex - 1 + currentSet.length) % currentSet.length;
+		  showImage();
+		});
+		
+		lbNext.addEventListener('click', function() {
+		  currentIndex = (currentIndex + 1) % currentSet.length;
+		  showImage();
+		});
+		
+		lbClose.addEventListener('click', closeLightbox);
+		
+		// Click background to close
+		lightbox.addEventListener('click', function(e) {
+		  if (e.target === lightbox) closeLightbox();
+		});
+		
+		// Click image to zoom
+		lbImg.addEventListener('click', function(e) {
+		  e.stopPropagation();
+		  lbImg.classList.toggle('zoomed');
+		});
+		
+		// Keyboard navigation
+		document.addEventListener('keydown', function(e) {
+		  if (!lightbox.classList.contains('open')) return;
+		  if (e.key === 'ArrowLeft')  { currentIndex = (currentIndex - 1 + currentSet.length) % currentSet.length; showImage(); }
+		  if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % currentSet.length; showImage(); }
+		  if (e.key === 'Escape')     { closeLightbox(); }
+		});
+		
+		// Wire up all thumbnails
+		document.querySelectorAll('.project-gallery').forEach(function(gallery) {
+		  const thumbs = gallery.querySelectorAll('.thumb');
+		  const srcs   = Array.from(thumbs).map(function(t) { return t.src; });
+		  thumbs.forEach(function(thumb, i) {
+		    thumb.addEventListener('click', function() {
+		      openLightbox(srcs, i);
+		    });
+		  });
+		});
     // ── Cursor ──
     const cursor = document.getElementById('cursor');
     const labelX = document.getElementById('label-x');
