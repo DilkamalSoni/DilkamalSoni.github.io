@@ -526,6 +526,7 @@
 	  letter-spacing: 0.03em;
 	  line-height: 1.3;
 	  text-align: center;
+	  display: none;
 	}
 	/* ── LIGHTBOX OVERLAY ── */
 	#lightbox {
@@ -589,7 +590,15 @@
 	  letter-spacing: 0.1em;
 	  min-width: 60px;
 	  text-align: center;
-	} 	
+	}
+	#lightbox-caption {
+		font-family: var(--mono);
+		font-size: 13px;
+		color: var(--muted);
+		letter-spacing: 0.06em;
+		text-align: center;
+		min-height: 18px;
+	}
   /* ── EXPERIENCE ── */
   #experience .exp-grid {
     max-width: 1100px;
@@ -1380,6 +1389,7 @@
 <!-- LIGHTBOX -->
 <div id="lightbox">
   <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
   <div id="lightbox-controls">
     <button class="lb-btn" id="lb-prev">← prev</button>
     <span id="lightbox-counter">1 / 6</span>
@@ -1442,10 +1452,12 @@
 		const lbClose     = document.getElementById('lb-close');
 		
 		let currentSet   = [];
+	    let currentCaps  = [];
 		let currentIndex = 0;
 		
-		function openLightbox(images, index) {
+		function openLightbox(images, caps, index) {
 		  currentSet   = images;
+		  currentCaps  = caps;
 		  currentIndex = index;
 		  showImage();
 		  lightbox.classList.add('open');
@@ -1455,6 +1467,7 @@
 		  lbImg.src = currentSet[currentIndex];
 		  lbImg.classList.remove('zoomed');
 		  lbCounter.textContent = (currentIndex + 1) + ' / ' + currentSet.length;
+		  document.getElementById('lightbox-caption').textContent = currentCaps[currentIndex] || '';
 		}
 		
 		function closeLightbox() {
@@ -1496,10 +1509,15 @@
 		// Wire up all thumbnails
 		document.querySelectorAll('.project-gallery').forEach(function(gallery) {
 		  const thumbs = gallery.querySelectorAll('.thumb');
-		  const srcs   = Array.from(thumbs).map(function(t) { return t.src; });
+		  const srcs = Array.from(thumbs).map(function(t) { return t.src; });
+		  const captions = Array.from(thumbs).map(function(t) {
+		    const fig = t.closest('figure');
+		    const cap = fig ? fig.querySelector('figcaption') : null;
+		    return cap ? cap.textContent : '';
+		 });
 		  thumbs.forEach(function(thumb, i) {
 		    thumb.addEventListener('click', function() {
-		      openLightbox(srcs, i);
+		      openLightbox(srcs, captions, i);
 		    });
 		  });
 		});
