@@ -9,7 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+	
   :root {
     --bg:        #1a1a1f;
     --bg2:       #212128;
@@ -17,7 +23,7 @@
     --border:    rgba(255,255,255,0.09);
     --border2:   rgba(255,255,255,0.16);
     --text:      #eeeef2;
-    --muted:     #8e8ea0;
+    --muted:     #a1a1b5; /* brighter contrast to background */
     --accent:    #3b82f6;
     --accent2:   #60a5fa;
     --accent-dim:rgba(59,130,246,0.12);
@@ -32,8 +38,9 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--body);
-    font-size: 18px;
-    line-height: 1.75;
+    /* Added moblie: 18px on mobile, scales to 20px on desktop for better readability */
+    font-size: clamp(18px, 1.2vw, 20px);
+    line-height: 1.8;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -74,7 +81,7 @@
     text-decoration: none;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: color 0.2s;
+    transition: color 0.2s, opacity 0.2s;
   }
 
   .nav-links a:hover { color: var(--text); }
@@ -125,7 +132,7 @@
     line-height: 1.0;
     letter-spacing: -0.02em;
     color: var(--text);
-    max-width: 900px;
+    max-width: 1100px;
     margin-bottom: 32px;
   }
 
@@ -135,10 +142,11 @@
   }
 
   .hero-desc {
-    font-size: 19px;
+    /* mobile function for hero description: 18px on mobile, 22px on desktop */
+    font-size: clamp(18px, 1.4vw, 22px);
     font-weight: 300;
     color: var(--muted);
-    max-width: 1200px;
+    max-width: 1300px;
     line-height: 1.85;
     margin-bottom: 48px;
   }
@@ -157,8 +165,9 @@
   .btn-primary {
     display: inline-flex;
     align-items: center;
+	justify-content: center;
     gap: 8px;
-    padding: 12px 28px;
+    padding: 14px 32px;
     background: var(--accent);
     color: #fff;
     font-family: var(--mono);
@@ -168,16 +177,21 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   }
 
-  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-primary:hover { 
+	  background: var(--accent2);
+	  transform: translateY(-1px);
+	  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
 
   .btn-ghost {
     display: inline-flex;
     align-items: center;
+	justify-content: center;
     gap: 8px;
-    padding: 12px 28px;
+    padding: 14px 32px;
     background: transparent;
     color: var(--muted);
     font-family: var(--mono);
@@ -185,17 +199,21 @@
     letter-spacing: 0.05em;
     text-decoration: none;
     border: 1px solid var(--border2);
-    transition: color 0.2s, border-color 0.2s;
+    transition: all 0.2s;
   }
 
-  .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
+  .btn-ghost:hover { 
+	  color: var(--text);
+	  border-color: var(--accent);
+	  background: rgba(59, 130, 246, 0.05);
+  }
 
   .hero-stats {
     position: absolute;
-    right: 48px;
-    top: 20%;
+    right: 64px;
+    top: 25%;
     transform: translateY(-50%);
-    width: 260px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -293,13 +311,14 @@
   /* ── ABOUT ── */
   #about .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    max-width: 1100px;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 80px;
+    max-width: 1400px;
   }
 
   .about-text p {
-    font-size: 16px;
+	/* readability for font */
+    font-size: clamp(18px, 1.2vw, 20px);
     font-weight: 300;
     color: var(--muted);
     line-height: 1.9;
@@ -353,7 +372,7 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
@@ -457,7 +476,7 @@
   }
 
   .project-desc {
-    font-size: 15px;
+    font-size: clamp(16px, 1.1vw, 18px);
     font-weight: 300;
     color: var(--muted);
     line-height: 1.8;
@@ -601,10 +620,10 @@
 	}
   /* ── EXPERIENCE ── */
   #experience .exp-grid {
-    max-width: 1100px;
+    max-width: 1500px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 64px;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 80px;
   }
 
   .exp-sidebar {
@@ -674,7 +693,7 @@
   }
 
   .exp-points li {
-    font-size: 14px;
+    font-size: clamp(15px, 1vw, 17px);
     font-weight: 300;
     color: var(--muted);
     line-height: 1.7;
@@ -711,7 +730,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
@@ -818,7 +837,9 @@
   }
 
   /* ── CUSTOM CURSOR ── */
+  @media (pointer: fine){
   * { cursor: none !important; }
+  }
 
   #cursor {
     position: fixed;
@@ -827,6 +848,10 @@
     transform: translate(-50%, -50%);
     top: 0;
     left: 0;
+  }
+	
+  @media (pointer: fine){
+  * { cursor: none !important; }
   }
   .reveal {
     opacity: 0;
@@ -847,7 +872,7 @@
   .hero-tag, h1, .hero-desc, .hero-cta, .hero-stats {
     opacity: 0;
     animation: fadeUp 0.8s ease forwards;
-  }
+  }	
 
   h1 { animation-delay: 0.1s; }
   .hero-desc { animation-delay: 0.2s; }
@@ -858,25 +883,125 @@
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+	
+  /* ── MOBILE HAMBURGER MENU ── */
+  .nav-hamburger {
+	  display: none;
+	  flex-direction: column;
+	  gap: 5px;
+	  cursor: pointer;
+	  padding: 4px;
+	  background: none;
+	  border: none;
+	  z-index: 200;
+  }
+	
+	.nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--muted);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    background: rgba(26,26,31,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 24px;
+    z-index: 99;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-mobile-menu.open { display: flex; }
+
+  .nav-mobile-menu a {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a:hover { color: var(--text); }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 0 24px; }
+   /* Base size handled now */
+	  
+    nav { padding: 0 20px; }
     .nav-links { display: none; }
-    #hero, section, footer { padding-left: 24px; padding-right: 24px; }
-    #hero { padding-top: 100px; }
-    h1 { font-size: 40px; }
-    #about .about-grid,
-    #experience .exp-grid,
-    #references .ref-grid { grid-template-columns: 1fr; gap: 40px; }
-    .project-card { grid-template-columns: 1fr; gap: 24px; }
+	.nav-hamburger { display: flex; }
+	  
+    #hero { padding: 90px 20px 60px; }
+    section { padding: 72px 20px; }
+    footer { padding: 20px; }
+    #contact { padding: 80px 20px; }
+
+    h1 { font-size: clamp(36px, 10vw, 48px); }
+    h2 { font-size: clamp(24px, 6vw, 32px); margin-bottom: 32px; }
+
+    .hero-desc { font-size: 16px; }
+
     .hero-stats {
       position: static;
       transform: none;
       width: 100%;
-      margin-top: 48px;
+      margin-top: 40px;
     }
+
+    #about .about-grid,
+    #experience .exp-grid,
+    #references .ref-grid { grid-template-columns: 1fr; gap: 32px; }
+
+    .project-card {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 24px;
+    }
+
+    .project-content h3 { font-size: 18px; }
+    .project-desc { font-size: 14px; }
+	  
     .exp-sidebar { position: static; }
+
+	.exp-header { flex-direction: column; gap: 4px; }
+    .exp-date { white-space: normal; }
+
+    footer {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .ref-card { padding: 24px; }
+
+    #lightbox-img { max-width: 95vw; max-height: 65vh; }
+    #lightbox-controls { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .lb-btn { padding: 10px 16px; font-size: 13px; }
+  }
+
+	@media (max-width: 480px) {
+    h1 { font-size: 32px; }
+    .hero-cta { flex-direction: column; }
+    .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    .project-card { padding: 18px; }
+    .stat-row { padding: 12px 16px; }
   }
 </style>
 </head>
@@ -893,8 +1018,21 @@
     <li><a href="#references">References</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE NAV MENU -->
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="#about"      id="mnav-about">About</a>
+  <a href="#projects"   id="mnav-projects">Projects</a>
+  <a href="#experience" id="mnav-experience">Experience</a>
+  <a href="#education"  id="mnav-education">Education</a>
+  <a href="#references" id="mnav-references">References</a>
+  <a href="#contact"    id="mnav-contact">Contact</a>
+</div>
+	
 <!-- HERO -->
 <section id="hero">
   <div class="hero-grid-line" style="left: 48px;"></div>
@@ -1206,7 +1344,7 @@
         <div class="project-tags">
           <span class="tag">Project engineering</span>
           <span class="tag">Technical specs</span>
-          <span class="tag">DFM</span>
+          <span class="tag">Design For Manufacturing (DFM)</span>
           <span class="tag">Workflow automation</span>
         </div>
       </div>
@@ -1563,6 +1701,23 @@
     document.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; });
     document.addEventListener('mouseenter', function() { cursor.style.opacity = '1'; });
 
+    // ── Hamburger menu ──
+    const hamburger   = document.getElementById('nav-hamburger');
+    const mobileMenu  = document.getElementById('nav-mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      // Close menu when a link is tapped
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+	  
   });
 </script>
 
