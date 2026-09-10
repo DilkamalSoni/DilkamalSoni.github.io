@@ -618,6 +618,97 @@
 		text-align: center;
 		min-height: 18px;
 	}
+	/* ── CAD PORTFOLIO ── */
+  #cad-portfolio { overflow: hidden; }
+  .cad-intro {
+    max-width: 760px;
+    color: var(--muted);
+    font-size: clamp(16px, 1.1vw, 18px);
+    font-weight: 300;
+    line-height: 1.8;
+    margin: -24px 0 48px;
+  }
+  .cad-shell {
+    max-width: 1400px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(59,130,246,.07), rgba(255,255,255,.015));
+    padding: 28px;
+    position: relative;
+  }
+  .cad-shell::before {
+    content: 'CAD / DESIGN ARCHIVE';
+    position: absolute;
+    top: 14px; right: 18px;
+    font: 10px var(--mono);
+    letter-spacing: .14em;
+    color: var(--accent);
+  }
+  .cad-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    gap: 34px;
+    align-items: stretch;
+  }
+  .cad-stage {
+    min-height: 390px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border2);
+    background: #15171d;
+  }
+  .cad-stage::after {
+    content: 'HOVER TO PAUSE  ·  CLICK TO INSPECT';
+    position: absolute;
+    bottom: 14px; left: 16px;
+    font: 10px var(--mono);
+    letter-spacing: .1em;
+    color: rgba(238,238,242,.58);
+    pointer-events: none;
+  }
+  .cad-track {
+    display: flex;
+    height: 100%;
+    transition: transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+  }
+  .cad-slide {
+    flex: 0 0 100%;
+    display: grid;
+    place-items: center;
+    padding: 42px 42px 60px;
+  }
+  .cad-slide img {
+    width: 100%;
+    height: 290px;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 25px rgba(0,0,0,.42));
+    cursor: pointer !important;
+  }
+  .cad-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px 4px 18px 0;
+  }
+  .cad-kicker { font: 11px var(--mono); color: var(--accent); letter-spacing: .13em; text-transform: uppercase; margin-bottom: 14px; }
+  .cad-detail h3 { font: 700 clamp(24px, 3vw, 38px)/1.08 var(--display); letter-spacing: -.025em; margin-bottom: 16px; }
+  .cad-detail p { color: var(--muted); font-size: 15px; font-weight: 300; line-height: 1.8; margin-bottom: 22px; }
+  .cad-detail .tag { display: inline-block; margin: 0 5px 7px 0; }
+  .cad-open { align-self: flex-start; margin-top: 12px; padding: 11px 16px; font: 11px var(--mono); letter-spacing: .09em; color: var(--text); border: 1px solid var(--border2); background: transparent; cursor: pointer !important; transition: .2s; }
+  .cad-open:hover { border-color: var(--accent); color: var(--accent2); background: var(--accent-dim); }
+  .cad-timeline { margin-top: 30px; position: relative; padding-top: 22px; }
+  .cad-timeline::before { content: ''; position: absolute; top: 30px; left: 0; right: 0; height: 1px; background: var(--border2); }
+  .cad-thumbs { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 10px; position: relative; }
+  .cad-thumb { position: relative; border: 1px solid var(--border); background: var(--bg2); padding: 7px; text-align: left; cursor: pointer !important; transition: border-color .25s, transform .25s, background .25s; }
+  .cad-thumb::before { content: ''; position: absolute; top: -4px; left: 12px; width: 7px; height: 7px; border: 1px solid var(--accent); border-radius: 50%; background: var(--bg); z-index: 1; }
+  .cad-thumb:hover, .cad-thumb.active { border-color: var(--accent); background: var(--accent-dim); transform: translateY(-3px); }
+  .cad-thumb img { width: 100%; height: 70px; object-fit: contain; background: #17191f; display: block; margin-bottom: 9px; }
+  .cad-thumb-year { font: 10px var(--mono); color: var(--accent2); letter-spacing: .08em; }
+  .cad-thumb-title { display: block; color: var(--muted); font: 11px/1.35 var(--body); margin-top: 3px; }
+  .cad-progress { height: 2px; background: var(--border); margin-top: 22px; overflow: hidden; }
+  .cad-progress span { display: block; height: 100%; width: 25%; background: var(--accent); transition: transform .7s ease; transform-origin: left; }
+
   /* ── EXPERIENCE ── */
   #experience .exp-grid {
     max-width: 1500px;
@@ -844,10 +935,11 @@
   #cursor {
     position: fixed;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10001;
     transform: translate(-50%, -50%);
     top: 0;
     left: 0;
+	transition: opacity .15s ease;
   }
 	
   @media (pointer: fine){
@@ -994,6 +1086,13 @@
     #lightbox-img { max-width: 95vw; max-height: 65vh; }
     #lightbox-controls { flex-wrap: wrap; justify-content: center; gap: 10px; }
     .lb-btn { padding: 10px 16px; font-size: 13px; }
+	
+	.cad-feature { grid-template-columns: 1fr; }
+    .cad-stage { min-height: 300px; }
+    .cad-slide { padding: 28px 24px 54px; }
+    .cad-slide img { height: 220px; }
+    .cad-detail { padding: 8px 0 0; }
+    .cad-thumbs { grid-template-columns: repeat(3, 1fr); }
   }
 
 	@media (max-width: 480px) {
@@ -1012,6 +1111,7 @@
   <a href="#hero" class="nav-logo">DS.eng</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+	<li><a href="#cad-portfolio">CAD</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#education">Education</a></li>
@@ -1026,6 +1126,7 @@
 <!-- MOBILE NAV MENU -->
 <div class="nav-mobile-menu" id="nav-mobile-menu">
   <a href="#about"      id="mnav-about">About</a>
+  <a href="#cad-portfolio" id="mnav-cad">CAD</a>
   <a href="#projects"   id="mnav-projects">Projects</a>
   <a href="#experience" id="mnav-experience">Experience</a>
   <a href="#education"  id="mnav-education">Education</a>
@@ -1166,6 +1267,42 @@
           <span class="tag">Vendor coordination</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAD PORTFOLIO -->
+<section id="cad-portfolio">
+  <div class="section-label">CAD portfolio / timeline</div>
+  <h2>Iterations that  
+became systems.</h2>
+  <p class="cad-intro">A visual timeline of selected CAD work — from early mechanisms and academic prototypes to production-minded assemblies. Hover the archive to pause the scan, then select any year to inspect the project context.</p>
+  <div class="cad-shell reveal">
+    <div class="cad-feature">
+      <div class="cad-stage" id="cad-stage">
+        <div class="cad-track" id="cad-track">
+          <div class="cad-slide"><img src="precision_bracket_part_dwg.png" alt="Precision Bracket Study"></div>
+          <div class="cad-slide"><img src="wall_painter_assembly.png" alt="Autonomous Wall Painting Robot"></div>
+          <div class="cad-slide"><img src="jet_design_project.png" alt="Jet Design Project"></div>
+          <div class="cad-slide"><img src="pedal_cart_assembly.png" alt="Pedal Cart Project"></div>
+        </div>
+      </div>
+      <aside class="cad-detail" id="cad-detail" aria-live="polite">
+        <div class="cad-kicker">2019 · foundational study</div>
+        <h3>Parametric mechanism study</h3>
+        <p>Early exploration of constraint-driven modelling and motion relationships. This project established the design habits I still use today: define the interface, test the envelope, then refine for manufacture.</p>
+        <div><span class="tag">CAD</span><span class="tag">Mechanisms</span><span class="tag">Parametric design</span></div>
+        <button class="cad-open" id="cad-open" type="button">OPEN FULL-SIZE VIEW ↗</button>
+      </aside>
+    </div>
+    <div class="cad-timeline" aria-label="CAD project timeline">
+      <div class="cad-thumbs">
+        <button class="cad-thumb active" type="button" data-index="0" data-year="2026 · GD&T study" data-title="Precision Bracket Study" data-copy="Conceptual mechanical design project — developed to demonstrate mechanical design, GD&T and manufacturing considerations." data-tags="FreeCAD|AS1100|Geometric Dimensioning and Tolerancing"><img src="precision_bracket_part_dwg" alt=""></button>
+        <button class="cad-thumb" type="button" data-index="1" data-year="2022 · robotics project" data-title="Autonomous Wall Painting Robot" data-copy="The CAD environment for a 10-metre autonomous wall painting robot. Subsystems were coordinated in SolidWorks and iterated against FEA, fabrication, and field constraints." data-tags="SolidWorks|FEA|Systems design|DFM"><img src="wall_painter_assembly.png" alt=""></button>
+        <button class="cad-thumb" type="button" data-index="2" data-year="2021 · jet design project" data-title="Jet Design Project" data-copy="Designed and modeled a functional jet prototype by applying core aerodynamic and propulsion principles during my mechanical engineering degree." data-tags="CATIA V5|Tolerance analysis|Fabrication"><img src="jet_design_project.png" alt=""></button>
+        <button class="cad-thumb" type="button" data-index="3" data-year="2020 · first design project" data-title="Pedal Cart Project" data-copy="Designed and manufactured a custom pedal-powered cart, applying core mechanical engineering principles to optimize drivetrain efficiency, structural integrity, and chassis aerodynamics." data-tags="SolidWorks|Design Theory|Pedal Cart"><img src="pedal_cart_assembly.png" alt=""></button>
+      </div>
+      <div class="cad-progress"><span id="cad-progress-bar"></span></div>
     </div>
   </div>
 </section>
@@ -1676,6 +1813,49 @@
 		    });
 		  });
 		});
+	  
+	// ── CAD portfolio timeline carousel ──
+    const cadStage = document.getElementById('cad-stage');
+    const cadTrack = document.getElementById('cad-track');
+    const cadThumbs = Array.from(document.querySelectorAll('.cad-thumb'));
+    const cadDetail = document.getElementById('cad-detail');
+    const cadOpen = document.getElementById('cad-open');
+    const cadProgress = document.getElementById('cad-progress-bar');
+    let cadIndex = 0;
+    let cadTimer;
+    let cadPaused = false;
+
+    function updateCad(index) {
+      cadIndex = (index + cadThumbs.length) % cadThumbs.length;
+      const item = cadThumbs[cadIndex];
+      cadTrack.style.transform = 'translateX(-' + (cadIndex * 100) + '%)';
+      cadThumbs.forEach((thumb, i) => thumb.classList.toggle('active', i === cadIndex));
+      cadDetail.querySelector('.cad-kicker').textContent = item.dataset.year;
+      cadDetail.querySelector('h3').textContent = item.dataset.title;
+      cadDetail.querySelector('p').textContent = item.dataset.copy;
+      cadDetail.querySelector('.cad-detail-tags')?.remove();
+      const tags = document.createElement('div');
+      tags.className = 'cad-detail-tags';
+      item.dataset.tags.split('|').forEach(tag => {
+        const span = document.createElement('span'); span.className = 'tag'; span.textContent = tag; tags.appendChild(span);
+      });
+      cadDetail.querySelector('.cad-open').before(tags);
+      cadProgress.style.transform = 'scaleX(' + ((cadIndex + 1) / cadThumbs.length) + ')';
+      cadOpen.onclick = () => {
+        const imgs = Array.from(document.querySelectorAll('#cad-track img')).map(img => img.src);
+        const caps = cadThumbs.map(thumb => thumb.dataset.title);
+        openLightbox(imgs, caps, cadIndex);
+      };
+    }
+    function startCadTimer() {
+      clearInterval(cadTimer);
+      cadTimer = setInterval(() => { if (!cadPaused && !lightbox.classList.contains('open')) updateCad(cadIndex + 1); }, 2800);
+    }
+    cadThumbs.forEach(thumb => thumb.addEventListener('click', () => { updateCad(Number(thumb.dataset.index)); startCadTimer(); }));
+    cadStage.addEventListener('mouseenter', () => { cadPaused = true; });
+    cadStage.addEventListener('mouseleave', () => { cadPaused = false; });
+    updateCad(0); startCadTimer();
+	
     // ── Cursor ──
     const cursor = document.getElementById('cursor');
     const labelX = document.getElementById('label-x');
