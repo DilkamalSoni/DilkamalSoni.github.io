@@ -570,7 +570,7 @@
 	  max-height: 78vh;
 	  object-fit: contain;
 	  border: 1px solid var(--border2);
-	  transition: transform 0.2s;
+	  transition: transform 0.2s ease, transform-origin 0.15s ease;
 	  cursor: zoom-in !important;
 	}
 	
@@ -707,7 +707,7 @@
   .cad-thumb-year { font: 10px var(--mono); color: var(--accent2); letter-spacing: .08em; }
   .cad-thumb-title { display: block; color: var(--muted); font: 11px/1.35 var(--body); margin-top: 3px; }
   .cad-progress { height: 2px; background: var(--border); margin-top: 22px; overflow: hidden; }
-  .cad-progress span { display: block; height: 100%; width: 25%; background: var(--accent); transition: transform .7s ease; transform-origin: left; }
+  .cad-progress span { display: block; height: 100%; width: 100%; background: var(--accent); transition: transform .7s ease; transform-origin: left; }
 
   /* ── EXPERIENCE ── */
   #experience .exp-grid {
@@ -1273,10 +1273,10 @@
 
 <!-- CAD PORTFOLIO -->
 <section id="cad-portfolio">
-  <div class="section-label">CAD portfolio / timeline</div>
+  <div class="section-label">CAD portfolio</div>
   <h2>Iterations that  
 became systems.</h2>
-  <p class="cad-intro">A visual timeline of selected CAD work — from early mechanisms and academic prototypes to production-minded assemblies. Hover the archive to pause the scan, then select any year to inspect the project context.</p>
+  <p class="cad-intro">A visual timeline of selected CAD work, from academic prototypes to production-minded assemblies. Hover the archive to pause the scan, then select any year to inspect the project context.</p>
   <div class="cad-shell reveal">
     <div class="cad-feature">
       <div class="cad-stage" id="cad-stage">
@@ -1288,7 +1288,7 @@ became systems.</h2>
         </div>
       </div>
       <aside class="cad-detail" id="cad-detail" aria-live="polite">
-        <div class="cad-kicker">2019 · foundational study</div>
+        <div class="cad-kicker">2026 · foundational study</div>
         <h3>Parametric mechanism study</h3>
         <p>Early exploration of constraint-driven modelling and motion relationships. This project established the design habits I still use today: define the interface, test the envelope, then refine for manufacture.</p>
         <div><span class="tag">CAD</span><span class="tag">Mechanisms</span><span class="tag">Parametric design</span></div>
@@ -1297,7 +1297,7 @@ became systems.</h2>
     </div>
     <div class="cad-timeline" aria-label="CAD project timeline">
       <div class="cad-thumbs">
-        <button class="cad-thumb active" type="button" data-index="0" data-year="2026 · GD&T study" data-title="Precision Bracket Study" data-copy="Conceptual mechanical design project — developed to demonstrate mechanical design, GD&T and manufacturing considerations." data-tags="FreeCAD|AS1100|Geometric Dimensioning and Tolerancing"><img src="images/precision_bracket_part_dwg.png" alt=""></button>
+        <button class="cad-thumb active" type="button" data-index="0" data-year="2026 · GD&T study" data-title="Precision Bracket Study" data-copy="Conceptual mechanical design project - developed to demonstrate mechanical design, GD&T and manufacturing considerations." data-tags="FreeCAD|AS1100|Geometric Dimensioning and Tolerancing"><img src="images/precision_bracket_part_dwg.png" alt=""></button>
         <button class="cad-thumb" type="button" data-index="1" data-year="2022 · robotics project" data-title="Autonomous Wall Painting Robot" data-copy="The CAD environment for a 10-metre autonomous wall painting robot. Subsystems were coordinated in SolidWorks and iterated against FEA, fabrication, and field constraints." data-tags="SolidWorks|FEA|Systems design|DFM"><img src="images/wall_painter_assembly.png" alt=""></button>
         <button class="cad-thumb" type="button" data-index="2" data-year="2021 · jet design project" data-title="Jet Design Project" data-copy="Designed and modeled a functional jet prototype by applying core aerodynamic and propulsion principles during my mechanical engineering degree." data-tags="CATIA V5|Tolerance analysis|Fabrication"><img src="images/jet_design_project.jpeg" alt=""></button>
         <button class="cad-thumb" type="button" data-index="3" data-year="2020 · first design project" data-title="Pedal Cart Project" data-copy="Designed and manufactured a custom pedal-powered cart, applying core mechanical engineering principles to optimize drivetrain efficiency, structural integrity, and chassis aerodynamics." data-tags="SolidWorks|Design Theory|Pedal Cart"><img src="images/pedal_cart_assembly.png" alt=""></button>
@@ -1332,10 +1332,35 @@ became systems.</h2>
       <div class="project-content">
         <h3>BLDC Motor Efficiency Testbench</h3>
         <div class="project-org">Self-directed - Electric Propulsion Research</div>
-        <p class="project-desc" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-          <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(59,130,246,0.3);padding:6px 14px;background:rgba(59,130,246,0.06);">Coming Soon</span>
-          <span>Currently in progress. Full results, efficiency plots, CAD, and technical report will be published here upon completion.</span>
-        </p>
+        <div class="project-desc">
+		  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px;">
+		    <span style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(59,130,246,0.3);padding:6px 14px;background:rgba(59,130,246,0.06);">
+		      Coming Soon
+		    </span>
+		  </div>
+		
+		  <p>
+		    Designing and building a reaction-torque dynamometer to characterize BLDC motor efficiency across the torque-speed envelope, with core loss analysis and FEMM material comparison to follow.
+		  </p>
+		
+		  <p>
+		    Currently in the mechanical design phase: the motor mount has gone through two FEA-validated iterations, including catching and correcting an invalid material property in FreeCAD's default PLA library before trusting the stress results. Load case refinement — motor weight, propeller thrust, and proper reaction-torque loading — is in progress ahead of a powered test run.
+		  </p>
+		
+		  <p>
+		    Full DFX log, efficiency data, and FEMM results to follow as the build progresses.
+		  </p>
+		</div>
+		<a
+		  class="btn-ghost"
+		  href="pdfs/bldc-motor-testbench-dfx-log.pdf"
+		  target="_blank"
+		  rel="noopener"
+		  style="display:inline-flex;margin-top:8px;"
+		>
+		  View technical document ↗
+		</a>
+
       </div>
     </div>
 
@@ -1363,7 +1388,7 @@ became systems.</h2>
           Full system designed in SolidWorks with structural validation via FEA and Root Cause Failure
           Analysis. Manufactured by coordinating with Chinese and local suppliers during peak COVID-19
           restrictions; <strong>four months with no lab access, no deliveries, and no direct supervision</strong>.
-          Demonstrated a working prototype achieving <strong>200% efficiency</strong> over manual methods.
+          Demonstrated a working prototype achieving <strong>nearly doubled coverage rate versus manual painting, based on runtime testing</strong>.
         </p>
         <ul class="project-results">
           <li>Reduced scaffolding costs by 41.4% through robot-based access solution</li>
@@ -1746,11 +1771,17 @@ became systems.</h2>
 		let currentSet   = [];
 	    let currentCaps  = [];
 		let currentIndex = 0;
+	  	let zoomEnabled  = true;
 		
-		function openLightbox(images, caps, index) {
+		function openLightbox(images, caps, index, enableZoom = true) {
 		  currentSet   = images;
 		  currentCaps  = caps;
 		  currentIndex = index;
+		  zoomEnabled  = enableZoom;
+
+  		  lbImg.classList.remove('zoomed');
+  		  lbImg.style.transformOrigin = 'center center';
+			
 		  showImage();
 		  lightbox.classList.add('open');
 		}
@@ -1784,11 +1815,35 @@ became systems.</h2>
 		  if (e.target === lightbox) closeLightbox();
 		});
 		
-		// Click image to zoom
+		// Click image to zoom, except for CAD portfolio
 		lbImg.addEventListener('click', function(e) {
 		  e.stopPropagation();
+		  
+		  if (!zoomEnabled) {
+		    return;
+		  }
+		
 		  lbImg.classList.toggle('zoomed');
+		
+		  if (!lbImg.classList.contains('zoomed')) {
+		    lbImg.style.transformOrigin = 'center center';
+		  }
 		});
+	  
+	  	// Move the zoomed image toward the cursor position
+		lbImg.addEventListener('mousemove', function(e) {
+		  if (!zoomEnabled || !lbImg.classList.contains('zoomed')) {
+		    return;
+		  }
+		
+		  const rect = lbImg.getBoundingClientRect();
+		
+		  const x = ((e.clientX - rect.left) / rect.width) * 100;
+		  const y = ((e.clientY - rect.top) / rect.height) * 100;
+		
+		  lbImg.style.transformOrigin = `${x}% ${y}%`;
+		});
+
 		
 		// Keyboard navigation
 		document.addEventListener('keydown', function(e) {
@@ -1844,7 +1899,7 @@ became systems.</h2>
       cadOpen.onclick = () => {
         const imgs = Array.from(document.querySelectorAll('#cad-track img')).map(img => img.src);
         const caps = cadThumbs.map(thumb => thumb.dataset.title);
-        openLightbox(imgs, caps, cadIndex);
+        openLightbox(imgs, caps, cadIndex, false);
       };
     }
     function startCadTimer() {
