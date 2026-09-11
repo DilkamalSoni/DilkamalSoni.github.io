@@ -482,6 +482,13 @@
     line-height: 1.8;
     margin-bottom: 24px;
   }
+	.project-card.featured .project-desc p {
+	  margin-bottom: 32px;
+	}
+	
+	.project-card.featured .project-desc p:last-child {
+	  margin-bottom: 0;
+	}
 
   .project-desc strong { color: var(--text); font-weight: 400; }
 
@@ -572,6 +579,13 @@
 	  border: 1px solid var(--border2);
 	  transition: transform 0.2s ease, transform-origin 0.15s ease;
 	  cursor: zoom-in !important;
+	}
+	#lightbox-img.zoom-available:not(.zoomed) {
+	  cursor: zoom-in !important;
+	}
+	
+	#lightbox-img.zoom-available.zoomed {
+	  cursor: zoom-out !important;
 	}
 	
 	#lightbox-img.zoomed {
@@ -1780,6 +1794,7 @@ became systems.</h2>
 		  zoomEnabled  = enableZoom;
 
   		  lbImg.classList.remove('zoomed');
+		  lbImg.classList.toggle('zoom-available', zoomEnabled);
   		  lbImg.style.transformOrigin = 'center center';
 			
 		  showImage();
@@ -1826,7 +1841,17 @@ became systems.</h2>
 		  lbImg.classList.toggle('zoomed');
 		
 		  if (!lbImg.classList.contains('zoomed')) {
-		    lbImg.style.transformOrigin = 'center center';
+		    targetOriginX = 50;
+		    targetOriginY = 50;
+		    currentOriginX = 50;
+		    currentOriginY = 50;
+		    lbImg.style.transformOrigin = '50% 50%';
+		  } else {
+		    targetOriginX = 50;
+		    targetOriginY = 50;
+		    currentOriginX = 50;
+		    currentOriginY = 50;
+		    lbImg.style.transformOrigin = '50% 50%';
 		  }
 		});
 	  
@@ -1844,7 +1869,52 @@ became systems.</h2>
 		  lbImg.style.transformOrigin = `${x}% ${y}%`;
 		});
 
+		// Smooth cursor-controlled zoom positioning
+		let targetOriginX = 50;
+		let targetOriginY = 50;
+		let currentOriginX = 50;
+		let currentOriginY = 50;
+		let zoomAnimationFrame = null;
 		
+		function animateZoomOrigin() {
+		  currentOriginX += (targetOriginX - currentOriginX) * 0.14;
+		  currentOriginY += (targetOriginY - currentOriginY) * 0.14;
+		
+		  lbImg.style.transformOrigin =
+		    currentOriginX + '% ' + currentOriginY + '%';
+		
+		  if (
+		    Math.abs(targetOriginX - currentOriginX) > 0.01 ||
+		    Math.abs(targetOriginY - currentOriginY) > 0.01
+		  ) {
+		    zoomAnimationFrame = requestAnimationFrame(animateZoomOrigin);
+		  } else {
+		    zoomAnimationFrame = null;
+		  }
+		}
+		
+		lbImg.addEventListener('mousemove', function(e) {
+		  if (!zoomEnabled || !lbImg.classList.contains('zoomed')) {
+		    return;
+		  }
+		
+		  const rect = lbImg.getBoundingClientRect();
+		
+		  targetOriginX = Math.max(
+		    0,
+		    Math.min(100, ((e.clientX - rect.left) / rect.width) * 100)
+		  );
+		
+		  targetOriginY = Math.max(
+		    0,
+		    Math.min(100, ((e.clientY - rect.top) / rect.height) * 100)
+		  );
+		
+		  if (!zoomAnimationFrame) {
+		    zoomAnimationFrame = requestAnimationFrame(animateZoomOrigin);
+		  }
+		});
+
 		// Keyboard navigation
 		document.addEventListener('keydown', function(e) {
 		  if (!lightbox.classList.contains('open')) return;
